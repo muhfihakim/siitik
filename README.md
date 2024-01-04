@@ -11,7 +11,7 @@ YouTube : [/@nexted](https://www.youtube.com/@nexted23)
 
 ## Daftar Berkas Konfigurasi
 
-- `.env`: Berkas konfigurasi database untuk aplikasi.
+- `.env.example`: Berkas konfigurasi database untuk aplikasi. Ganti nama menjadi `.env`
 
 ## Penggunaan
 
