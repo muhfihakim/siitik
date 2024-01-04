@@ -1,0 +1,103 @@
+/* Gaya dasar tabel */
+.tg {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tg td,
+.tg th {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px 10px;
+    word-break: normal;
+    white-space: wrap; /* Menghindari pemotongan teks */
+    overflow: show;
+    text-overflow: ellipsis; /* Menampilkan elipsis jika teks terpotong */
+}
+
+.tg .tg-4gfj {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: center;
+    vertical-align: middle;
+}
+.tg .tg-509f {
+    border-color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: center;
+    vertical-align: middle;
+}
+.tg .tg-wpk1 {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: left;
+    vertical-align: middle;
+}
+.tg .tg-m223 {
+    border-color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 100%;
+    text-align: left;
+    vertical-align: middle;
+}
+.tg .tg-20nl {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: center;
+    vertical-align: top;
+}
+.tg .tg-xpxm {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 100%;
+    text-align: left;
+    vertical-align: middle;
+}
+.tg .tg-lgk6 {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 100%;
+    text-align: left;
+    vertical-align: top;
+}
+.tg .tg-gh6k {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.tg .tg-5xcx {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: left;
+    vertical-align: top;
+    border-width: 1px;
+}
+.tg .tg-73oq {
+    border-color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tg .tg-6xcx {
+    border-color: #000000;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif !important;
+    text-align: left;
+    vertical-align: top;
+    border-width: 0px;
+}
