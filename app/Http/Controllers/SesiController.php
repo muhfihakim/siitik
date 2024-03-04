@@ -57,10 +57,10 @@ class SesiController extends Controller
             "=============================";
 
         Telegram::sendMessage([
-            'chat_id' => '-1002022996344',
+            'chat_id' => '', //ID Chat
             'text' => $message,
             'parse_mode' => 'Markdown',
-            'reply_to_message_id' => 34,
+            'reply_to_message_id' => 34, //Topik
         ]);
     }
 

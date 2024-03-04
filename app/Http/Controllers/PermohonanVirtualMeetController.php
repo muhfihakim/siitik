@@ -100,7 +100,7 @@ class PermohonanVirtualMeetController extends Controller
         ];
 
         Telegram::sendMessage([
-            'chat_id'             => '-1001872394094', // Ganti dengan ID grup Telegram Anda yang diawali dengan tanda negatif
+            'chat_id'             => '', // Ganti dengan ID grup Telegram Anda yang diawali dengan tanda negatif
             'text'                => $message,
             'parse_mode'          => 'Markdown',
             'reply_markup'        => json_encode(['inline_keyboard' => $inlineKeyboard]),

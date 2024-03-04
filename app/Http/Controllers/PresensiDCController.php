@@ -130,10 +130,10 @@ class PresensiDCController extends Controller
             "=============================";
 
         Telegram::sendMessage([
-            'chat_id'             => '-1001872394094', // Ganti dengan ID grup Telegram Anda yang diawali dengan tanda negatif
+            'chat_id'             => '', // Ganti dengan ID grup Telegram Anda yang diawali dengan tanda negatif
             'text'                => $message,
             'parse_mode'          => 'Markdown',
-            'reply_to_message_id' => 3,
+            'reply_to_message_id' => 3, // ID
         ]);
 
         session()->flash('message', 'Presensi Anda Berhasil Dilakukan.');
