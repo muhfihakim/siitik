@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends('admin.app3')
 @section('content')
     <style>
         #zoomText {
@@ -6,7 +6,6 @@
             max-width: 100%;
             resize: vertical;
             /* Memungkinkan pengguna untuk merubah tinggi textarea */
-        }
     </style>
     <div class="content-body">
         <div class="row">
@@ -27,10 +26,11 @@
                         @else
                             <p>Tidak ada hasil konversi yang tersedia.</p>
                         @endif
-                        <form method="post" action="{{ route('convert') }}">
+                        <form method="post" action="{{ route('convert2') }}">
                             <br>
                             @csrf
-                            <label for="zoomText" class="form-label">Masukkan Teks Undangan Virtual Meeting</label><br>
+                            <label for="zoomText" class="form-label required">Masukkan Teks Undangan Virtual
+                                Meeting</label><br>
                             <textarea placeholder="Paste Zoom Meeting Invitation" id="zoomText" name="zoomText" rows="10" cols="50"></textarea><br>
                             <div class="mb-4 row">
                                 <div class="col">
@@ -39,6 +39,7 @@
                                         placeholder="Masukkan Nama Instansi/OPD">
                                 </div>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Konversikan</button>
                         </form>
                     </div>
@@ -58,8 +59,8 @@
             </div>
         </div>
     </div>
-    </div>
 @endsection
+
 @section('scripts')
     <script>
         document.getElementById('kirimKeTelegram').addEventListener('click', function(event) {

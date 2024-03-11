@@ -27,7 +27,8 @@ Route::get('/form_virtualmeet', [PermohonanVirtualMeetController::class, 'form']
 Route::post('/admin/sendpermohonan', [PermohonanVirtualMeetController::class, 'sendform'])->name('send.form.virtualmeet'); // send permohonan virtual meet
 Route::get('/presensi_pusatdata', [PresensiDCController::class, 'index'])->name('form.presensi.pusatdata'); //form presensi pusat data
 Route::post('/admin/sendpresensi', [PresensiDCController::class, 'store'])->name('send.form.presensi.pusatdata'); //send presensi pusat data
-
+Route::get('/convert_link', [PermohonanVirtualMeetController::class, 'convert_link'])->name('convert_link'); //konversi virtual meet
+Route::post('/convert-link-done', [PermohonanVirtualMeetController::class, 'convert2'])->name('convert2'); //hasil konversi virtual meet
 
 // ROUTE GUEST
 Route::middleware(['guest'])->group(function () {
@@ -72,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/aplikasi/monitoring/search', [AplikasiController::class, 'search'])->name('search'); //search monitoring aplikasi
 
 
-    // ROUTE SURAT PERMOHONAN VIRTUAL MEETING
+    // ROUTE PERMOHONAN VIRTUAL MEETING
     Route::get('/admin/virtualmeet', [PermohonanVirtualMeetController::class, 'index'])->name('index.virtualmeet'); //index list surat permohonan
     Route::post('/admin/virtualmeet/{id}/upsrtprmhnan', [PermohonanVirtualMeetController::class, 'uploadSrtPrmhnan']); //process upload surat permohonan
     Route::post('/admin/virtualmeet/{id}/upsp', [PermohonanVirtualMeetController::class, 'uploadSP']); //process upload sp

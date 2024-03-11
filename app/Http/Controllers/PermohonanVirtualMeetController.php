@@ -253,6 +253,11 @@ class PermohonanVirtualMeetController extends Controller
         return view('admin.virtualmeet.convert_zoom');
     }
 
+        public function convert_link()
+    {
+        return view('admin.virtualmeet.convert_link');
+    }
+
     public function convert(Request $request)
     {
         $teksZoom = $request->input('zoomText');
@@ -261,62 +266,73 @@ class PermohonanVirtualMeetController extends Controller
         return view('admin.virtualmeet.convert_zoom', ['hasilKonversi' => $hasilKonversi]);
     }
 
+    public function convert2(Request $request)
+    {
+        $teksZoom = $request->input('zoomText');
+        $hasilKonversi = $this->convertZoomText($teksZoom);
+
+        return view('admin.virtualmeet.convert_link', ['hasilKonversi' => $hasilKonversi]);
+    }
+
     private function convertZoomText($teksZoom)
     {
-        // Pisahkan teks menjadi baris-baris
-        $barisTeks = explode("\n", $teksZoom);
+    // Pisahkan teks menjadi baris-baris
+    $barisTeks = explode("\n", $teksZoom);
 
-        // Ambil informasi penting
-        $topic = null;
-        $waktuLine = null;
-        foreach ($barisTeks as $line) {
-            if (strpos($line, 'Topic:') === 0) {
-                $topic = trim(str_replace('Topic:', '', $line));
-            } elseif (strpos($line, 'Time:') === 0) {
-                $waktuLine = $line;
-            }
+    // Ambil informasi penting
+    $topic = null;
+    $waktuLine = null;
+    foreach ($barisTeks as $line) {
+        if (strpos($line, 'Topic:') === 0) {
+            $topic = trim(str_replace('Topic:', '', $line));
+        } elseif (strpos($line, 'Time:') === 0) {
+            $waktuLine = $line;
         }
-
-        if (!$topic || !$waktuLine) {
-            return "Format teks Zoom Invitation tidak valid.";
-        }
-
-        $waktuRaw = trim(str_replace('Time:', '', $waktuLine));
-
-        // Mencari link Zoom menggunakan ekspresi reguler
-        $linkZoom = $this->findZoomLink($barisTeks);
-
-        $meetingID = null;
-        $passcode = null;
-
-        foreach ($barisTeks as $line) {
-            if (strpos($line, 'Meeting ID:') === 0) {
-                $meetingID = trim(str_replace('Meeting ID:', '', $line));
-            } elseif (strpos($line, 'Passcode:') === 0) {
-                $passcode = trim(str_replace('Passcode:', '', $line));
-            }
-        }
-
-        // Ambil Hari, Tanggal, dan Pukul
-        $waktuArray = explode(' ', $waktuRaw);
-        $bulan = $waktuArray[0];
-        $tanggal = str_replace(',', '', $waktuArray[1]); // Hapus koma pada tanggal
-        $tahun = $waktuArray[2];
-        $pukul = $waktuArray[3];
-
-        // Ganti bagian ini sesuai dengan informasi yang tepat
-        $bulanIndonesia = $this->mapBulanToIndonesia($bulan);
-        $namaHari = $this->getNamaHari($tanggal, $bulan, $tahun);
-
-        $formatTujuan = "Kepada Yth:\nBapak/Ibu ..........................\n\nAkan diadakan Video Conference dengan agenda sebagai berikut:\n\n*$topic*\n\nHari             :  $namaHari\nTanggal       :  $tanggal $bulanIndonesia $tahun\nPukul           :  $pukul WIB s/d Selesai\n\nMeeting ID   : $meetingID\nPasscode     : $passcode\n\nLink Zoom Meeting :\n$linkZoom\n\n\nDemikian untuk maklum dan mohon kerjasamanya.\nTerima kasih.\n\n*.... Kab. Subang*";
-
-        // Simpan pesan dalam sesi flash
-        $message = "Format teks Undangan Virtual Meeting berhasil dikonversi.";
-        Session::flash('success', $message);
-
-        // Tampilkan hasil konversi
-        return $formatTujuan;
     }
+
+    if (!$topic || !$waktuLine) {
+        return "Format teks Zoom Invitation tidak valid.";
+    }
+
+    // Ambil Hari, Tanggal, dan Pukul
+    $waktuRaw = trim(str_replace('Time:', '', $waktuLine));
+    $waktuArray = explode(' ', $waktuRaw);
+    $bulan = $waktuArray[0];
+    $tanggal = str_replace(',', '', $waktuArray[1]); // Hapus koma pada tanggal
+    $tahun = $waktuArray[2];
+    $pukul = $waktuArray[3];
+
+    // Mencari link Zoom menggunakan ekspresi reguler
+    $linkZoom = $this->findZoomLink($barisTeks);
+
+    $meetingID = null;
+    $passcode = null;
+
+    foreach ($barisTeks as $line) {
+        if (strpos($line, 'Meeting ID:') === 0) {
+            $meetingID = trim(str_replace('Meeting ID:', '', $line));
+        } elseif (strpos($line, 'Passcode:') === 0) {
+            $passcode = trim(str_replace('Passcode:', '', $line));
+        }
+    }
+
+    // Ganti bagian ini sesuai dengan informasi yang tepat
+    $bulanIndonesia = $this->mapBulanToIndonesia($bulan);
+    $namaHari = $this->getNamaHari($tanggal, $bulan, $tahun);
+
+    // Ambil nilai dari input Penyelenggara
+    $penyelenggara = request()->input('penyelenggara');
+
+    $formatTujuan = "Kepada Yth:\nBapak/Ibu ..........................\n\nAkan diadakan Video Conference dengan agenda sebagai berikut:\n\n*$topic*\n\nHari             :  $namaHari\nTanggal       :  $tanggal $bulanIndonesia $tahun\nPukul           :  $pukul WIB s/d Selesai\n\n================\nMeeting ID   : $meetingID\nPasscode     : $passcode\n\nLink Zoom Meeting :\n$linkZoom\n================\n\nDemikian untuk maklum dan mohon kerjasamanya.\nTerima kasih.\n\n*$penyelenggara*";
+
+    // Simpan pesan dalam sesi flash
+    $message = "Format teks Undangan Virtual Meeting berhasil dikonversi.";
+    Session::flash('success', $message);
+
+    // Tampilkan hasil konversi
+    return $formatTujuan;
+    }
+
 
     private function mapBulanToIndonesia($bulan)
     {
@@ -375,15 +391,22 @@ class PermohonanVirtualMeetController extends Controller
 
         return $namaHariIndonesia;
     }
+
     private function findZoomLink($barisTeks)
     {
-        foreach ($barisTeks as $line) {
-            // Mencari link Zoom menggunakan ekspresi reguler
-            if (preg_match('/https:\/\/zoom\.us\/j\/\d+\?pwd=\w+/', $line, $matches)) {
-                return $matches[0];
+    $ambilLink = false;
+    foreach ($barisTeks as $line) {
+        if ($ambilLink) {
+            // Jika baris ini mengandung link Zoom, ekstrak link Zoom dari baris ini
+            if (preg_match('/https:\/\/\S+/', $line, $matches)) {
+                return trim($matches[0]);
             }
         }
-
-        return '';
+        // Mencari baris yang dimulai dengan "Join Zoom Meeting"
+        if (strpos($line, 'Join Zoom Meeting') !== false) {
+            $ambilLink = true;
+        }
+    }
+    return ''; // Jika link Zoom tidak ditemukan dalam seluruh teks
     }
 }
