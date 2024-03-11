@@ -22,3 +22,5 @@ Sebelum menjalankan atau menggunakan aplikasi ini, pastikan Anda telah mengkonfi
 
 ## Konfigurasi BOT Telegram
 
+1. Masukkan Token Telegram di .env baris terakhir
+
