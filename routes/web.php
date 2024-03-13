@@ -109,4 +109,7 @@ Route::middleware(['auth'])->group(function () {
 
     //  Route::get('/admin/network/ba/', [NetworkController::class, 'formBa']);
     // Route::post('/adming/network/generateba/', [NetworkController::class, 'generatePDF'])->name('generate.pdf');
+
+    //ROUTE CHANGELOGS
+    Route::get('/admin/changelogs', [ChangelogsController::class, 'index'])->name('index.changelogs');
 });

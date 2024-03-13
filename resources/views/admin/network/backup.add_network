@@ -34,103 +34,79 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- Radio button group for choosing network type -->
                             <div class="mb-4 row">
-                                <label class="col-3 col-form-label">Tipe Jaringan</label>
+                                <label class="col-3 col-form-label required">SN Aset</label>
                                 <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="network_type" id="networkNew"
-                                            value="new">
-                                        <label class="form-check-label" for="networkNew">Jaringan Baru</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="network_type"
-                                            id="networkExisting" value="existing">
-                                        <label class="form-check-label" for="networkExisting">Jaringan Existing</label>
-                                    </div>
+                                    <select name="sn_aset" class="theSelect form-control" id="snAsetSelect">
+                                        <option value="">Pilih SN Aset</option>
+                                        @foreach ($options as $option)
+                                            <option value="{{ $option }}">{{ $option }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                            <!-- Form for new network -->
-                            <div class="mb-4 row" id="newNetworkForm" style="display: none;">
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">SN Aset</label>
-                                    <div class="col">
-                                        <select name="sn_aset" class="theSelect form-control" id="snAsetSelect">
-                                            <option value="">Pilih SN Aset</option>
-                                            @foreach ($options as $option)
-                                                <option value="{{ $option }}">{{ $option }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Titik</label>
-                                    <div class="col">
-                                        <input type="text" name="titik" class="form-control"
-                                            placeholder="Masukkan Letak Titik">
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Titik Koordinat</label>
-                                    <div class="col">
-                                        <button type="button" id="getCoordinatesButton" class="btn btn-primary">Ambil
-                                            Koordinat</button>
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Latitude</label>
-                                    <div class="col">
-                                        <input type="text" name="latitude" id="latitude" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Longitude</label>
-                                    <div class="col">
-                                        <input type="text" name="longitude" id="longitude" class="form-control" readonly>
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label">Cek di Maps</label>
-                                    <div class="col">
-                                        <a id="googleMapsLink" href="" target="_blank" class="btn btn-primary">Lihat
-                                            Maps</a>
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Tanggal Pasang</label>
-                                    <div class="col">
-                                        <input type="date" name="tgl_pasang" class="form-control"
-                                            placeholder="Masukkan Tanggal Instalasi">
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Berita Acara</label>
-                                    <div class="col">
-                                        <input type="file" name="ba" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Foto</label>
-                                    <div class="col">
-                                        <input name="foto" type="file" accept="image/*" id="takePhotoInput2"
-                                            capture="camera" style="display: none;">
-                                        <button type="button" id="takePhotoButton2" class="btn btn-primary">Ambil /
-                                            Pilih
-                                            Foto</button>
-                                        <div id="photoPreview" style="margin-top: 10px;"></div>
-                                    </div>
-                                </div>
-                                <div class="mb-4 row">
-                                    <label class="col-3 col-form-label required">Keterangan</label>
-                                    <div class="col">
-                                        <input type="text" name="description" class="form-control"
-                                            placeholder="Masukkan Keterangan">
-                                    </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Titik</label>
+                                <div class="col">
+                                    <input type="text" name="titik" class="form-control"
+                                        placeholder="Masukkan Letak Titik">
                                 </div>
                             </div>
-                            <!-- Form for existing network -->
-                            <div class="mb-4 row" id="existingNetworkForm" style="display: none;">
-                                <!-- Your form fields for existing network here -->
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Titik Koordinat</label>
+                                <div class="col">
+                                    <button type="button" id="getCoordinatesButton" class="btn btn-primary">Ambil
+                                        Koordinat</button>
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Latitude</label>
+                                <div class="col">
+                                    <input type="text" name="latitude" id="latitude" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Longitude</label>
+                                <div class="col">
+                                    <input type="text" name="longitude" id="longitude" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label">Cek di Maps</label>
+                                <div class="col">
+                                    <a id="googleMapsLink" href="" target="_blank" class="btn btn-primary">Lihat
+                                        Maps</a>
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Tanggal Pasang</label>
+                                <div class="col">
+                                    <input type="date" name="tgl_pasang" class="form-control"
+                                        placeholder="Masukkan Tanggal Instalasi">
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Berita Acara</label>
+                                <div class="col">
+                                    <input type="file" name="ba" class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Foto</label>
+                                <div class="col">
+                                    <input name="foto" type="file" accept="image/*" id="takePhotoInput2"
+                                        capture="camera" style="display: none;">
+                                    <button type="button" id="takePhotoButton2" class="btn btn-primary">Ambil / Pilih
+                                        Foto</button>
+                                    <div id="photoPreview" style="margin-top: 10px;"></div>
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Keterangan</label>
+                                <div class="col">
+                                    <input type="text" name="description" class="form-control"
+                                        placeholder="Masukkan Keterangan">
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-end">
@@ -189,20 +165,6 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const newNetworkRadio = document.getElementById("networkNew");
-            const newNetworkForm = document.getElementById("newNetworkForm");
-
-            newNetworkRadio.addEventListener("change", function() {
-                if (newNetworkRadio.checked) {
-                    newNetworkForm.style.display = "block";
-                } else {
-                    newNetworkForm.style.display = "none";
-                }
-            });
-        });
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const takePhotoButton = document.getElementById('takePhotoButton2');

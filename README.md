@@ -2,16 +2,15 @@
 
 👨‍💻 M. L. Hakim
 🌏 Laravel 9
-🍍 Subang - Jabar | 
+🍍 Subang - Jabar |
 Instagram : [/@luthfikim](https://www.instagram.com/luthfikim_/)
 YouTube : [/@nexted](https://www.youtube.com/@nexted23)
-
 
 # Konfigurasi Aplikasi
 
 ## Daftar Berkas Konfigurasi
 
-- `.env.example`: Berkas konfigurasi database untuk aplikasi. Ganti nama menjadi `.env`
+-   `.env.example`: Berkas konfigurasi database untuk aplikasi. Ganti nama menjadi `.env`
 
 ## Penggunaan
 
@@ -22,5 +21,12 @@ Sebelum menjalankan atau menggunakan aplikasi ini, pastikan Anda telah mengkonfi
 
 ## Konfigurasi BOT Telegram
 
-1. Masukkan Token Telegram di .env baris terakhir
+Masukkan Token Telegram di .env baris terakhir
 
+## Daftar Penggunaan BOT Telegram
+
+1. app-> Console-> Commands-> CheckWebsiteStatus.php
+2. app-> Http-> Controllers-> PermohonanVirtualMeetController.php
+3. app-> Http-> Controllers-> PresensiDCController.php
+4. app-> Http-> Controllers-> SesiController.php
+5. resources-> views-> virtualmeet-> convert_link.blade.php
